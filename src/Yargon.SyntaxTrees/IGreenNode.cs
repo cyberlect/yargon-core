@@ -21,5 +21,11 @@ namespace Yargon.SyntaxTrees
         /// </summary>
         /// <value>The children of this node.</value>
         IReadOnlyList<IGreenNode> Children { get; }
+
+        /// <summary>
+        /// Gets the text width of this node.
+        /// </summary>
+        /// <value>The text width.</value>
+        int Width { get; }
     }
 }

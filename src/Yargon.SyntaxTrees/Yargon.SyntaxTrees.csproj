@@ -44,11 +44,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FancyNode.cs" />
+    <Compile Include="IChildrenList.cs" />
+    <Compile Include="IFancyGreenNode.cs" />
     <Compile Include="IGreenNode.cs" />
-    <Compile Include="INode.cs" />
+    <Compile Include="INodeFactory.cs" />
     <Compile Include="JetBrains.Annotations.cs" />
+    <Compile Include="Node.ChildrenList.cs" />
+    <Compile Include="Node.cs" />
+    <Compile Include="FancyNodeFactory.cs" />
+    <Compile Include="Node.SliceList.cs" />
+    <Compile Include="NodeFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TreePath.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Yargon.Core\Yargon.Core.csproj">
