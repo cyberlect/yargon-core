@@ -16,5 +16,11 @@ namespace Yargon.Core
         /// </summary>
         /// <value>The type of product.</value>
         IProductType Type { get; }
+
+        /// <summary>
+        /// Gets the products on which this product depends.
+        /// </summary>
+        /// <value>A set of dependencies.</value>
+        IReadOnlyCollection<IProduct> Dependencies { get; }
     }
 }
