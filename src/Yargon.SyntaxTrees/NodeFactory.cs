@@ -8,7 +8,7 @@ namespace Yargon.SyntaxTrees
     public class NodeFactory : INodeFactory
     {
         /// <inheritdoc />
-        public virtual Node Create(IGreenNode greenNode, Node parent, int index)
+        public virtual INode Create(IGreenNode greenNode, INode parent, int index)
         {
             #region Contract
             if (greenNode == null)
@@ -17,14 +17,16 @@ namespace Yargon.SyntaxTrees
                 throw new ArgumentNullException(nameof(parent));
             if (index < 0 || index >= parent.Children.Count)
                 throw new ArgumentOutOfRangeException(nameof(index));
+            if (!(parent is Node))
+                throw new ArgumentException("Parent is not a Node.", nameof(parent));
             #endregion
 
-            int offset = CalculateOffset(parent, index);
-            return new Node(this, greenNode, parent, offset);
+            int offset = CalculateOffset((Node)parent, index);
+            return new Node(this, greenNode, (Node)parent, offset);
         }
 
         /// <inheritdoc />
-        public virtual Node Create(IGreenNode greenNode)
+        public virtual INode Create(IGreenNode greenNode)
         {
             #region Contract
             if (greenNode == null)
@@ -58,8 +60,8 @@ namespace Yargon.SyntaxTrees
 
                 // If we find a red node,
                 // return the final offset immediately.
-                Node redNode;
-                if (parent.Children.TryGet(i, out redNode))
+                var redNode = parent.Children.TryGet(i);
+                if (redNode != null)
                     return redNode.Offset + span;
             }
 

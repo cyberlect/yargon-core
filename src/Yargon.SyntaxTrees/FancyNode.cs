@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 
 namespace Yargon.SyntaxTrees
 {
@@ -13,7 +8,7 @@ namespace Yargon.SyntaxTrees
         /// Gets the node factory that created this node.
         /// </summary>
         /// <value>The factory that created this node.</value>
-        private new FancyNodeFactory Factory => (FancyNodeFactory)base.Factory;
+        public new FancyNodeFactory Factory => (FancyNodeFactory)base.Factory;
 
         /// <summary>
         /// Gets the green node backing this red node.

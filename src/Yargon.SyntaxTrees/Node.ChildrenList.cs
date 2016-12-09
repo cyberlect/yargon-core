@@ -10,16 +10,16 @@ namespace Yargon.SyntaxTrees
         /// <summary>
         /// A list of red node children.
         /// </summary>
-        internal sealed class ChildrenList : IChildrenList<Node>
+        internal sealed class ChildrenList : IChildrenList<INode>
         {
-            private readonly Node owner;
-            private readonly Node[] children;
+            private readonly INode owner;
+            private readonly INode[] children;
 
             /// <inheritdoc />
             public int Count => this.children.Length;
             
             /// <inheritdoc />
-            public Node this[int index]
+            public INode this[int index]
             {
                 get
                 {
@@ -37,7 +37,7 @@ namespace Yargon.SyntaxTrees
             /// Initializes a new instance of the <see cref="ChildrenList"/> class.
             /// </summary>
             /// <param name="owner">The owner node.</param>
-            public ChildrenList(Node owner)
+            public ChildrenList(INode owner)
             {
                 #region Contract
                 if (owner == null)
@@ -45,20 +45,19 @@ namespace Yargon.SyntaxTrees
                 #endregion
 
                 this.owner = owner;
-                this.children = new Node[owner.GreenNode.Children.Count];
+                this.children = new INode[owner.GreenNode.Children.Count];
             }
             #endregion
 
             /// <inheritdoc />
-            public bool TryGet(int index, out Node child)
+            public INode TryGet(int index)
             {
                 #region Contract
                 if (index < 0 || index >= this.Count)
                     throw new ArgumentOutOfRangeException(nameof(index));
                 #endregion
 
-                child = this.children[index];
-                return child != null;
+                return this.children[index];
             }
 
             /// <summary>
@@ -66,14 +65,14 @@ namespace Yargon.SyntaxTrees
             /// </summary>
             /// <param name="index">The zero-based index of the child to get.</param>
             /// <returns>The created or cached red node.</returns>
-            private Node GetRedChild(int index)
+            private INode GetRedChild(int index)
             {
                 #region Contract
                 Debug.Assert(index >= 0 && index < this.children.Length);
                 #endregion
 
-                Node redNode;
-                if (!TryGet(index, out redNode))
+                var redNode = TryGet(index);
+                if (redNode == null)
                 {
                     var greenNode = this.owner.GreenNode.Children[index];
                     redNode = this.owner.Factory.Create(greenNode, this.owner, index);
@@ -83,9 +82,9 @@ namespace Yargon.SyntaxTrees
             }
 
             /// <inheritdoc />
-            public IEnumerator<Node> GetEnumerator()
+            public IEnumerator<INode> GetEnumerator()
             {
-                return ((IEnumerable<Node>)this.children).GetEnumerator();
+                return ((IEnumerable<INode>)this.children).GetEnumerator();
             }
 
             /// <inheritdoc />

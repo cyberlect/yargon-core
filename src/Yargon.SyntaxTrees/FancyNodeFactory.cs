@@ -4,12 +4,12 @@ namespace Yargon.SyntaxTrees
 {
     public sealed class FancyNodeFactory : NodeFactory
     {
-        public override Node Create(IGreenNode greenNode, Node parent, int index)
+        public override INode Create(IGreenNode greenNode, INode parent, int index)
         {
             return Create((IFancyGreenNode)greenNode, (FancyNode)parent, index);
         }
 
-        public override Node Create(IGreenNode greenNode)
+        public override INode Create(IGreenNode greenNode)
         {
             return Create((IFancyGreenNode)greenNode);
         }

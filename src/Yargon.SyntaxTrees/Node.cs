@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using JetBrains.Annotations;
 
 namespace Yargon.SyntaxTrees
@@ -7,13 +6,13 @@ namespace Yargon.SyntaxTrees
     /// <summary>
     /// A (red) syntax tree node.
     /// </summary>
-    public partial class Node
+    public partial class Node : INode
     {
         /// <summary>
         /// Gets the node factory that created this node.
         /// </summary>
         /// <value>The factory that created this node.</value>
-        protected INodeFactory Factory { get; }
+        public INodeFactory Factory { get; }
 
         /// <summary>
         /// Gets the green node backing this red node.
@@ -27,7 +26,7 @@ namespace Yargon.SyntaxTrees
         /// <value>The parent node;
         /// or <see langword="null"/> when this is the root node.</value>
         [CanBeNull]
-        public Node Parent { get; }
+        public INode Parent { get; }
 
         /// <summary>
         /// Gets the zero-based text offset of this node.
@@ -45,7 +44,10 @@ namespace Yargon.SyntaxTrees
         /// Gets the children of this node.
         /// </summary>
         /// <value>The children of this node.</value>
-        public IChildrenList<Node> Children { get; }
+        public IChildrenList<INode> Children { get; }
+
+        /// <inheritdoc />
+        IChildrenList<INode> INode.Children => this.Children;
 
         #region Constructors
         /// <summary>

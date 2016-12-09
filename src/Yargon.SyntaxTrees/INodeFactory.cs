@@ -19,13 +19,13 @@ namespace Yargon.SyntaxTrees
         /// <param name="parent">The parent red node.</param>
         /// <param name="index">The zero-based index of the child node.</param>
         /// <returns>The corresponding created red node.</returns>
-        Node Create(IGreenNode greenNode, Node parent, int index);
+        INode Create(IGreenNode greenNode, INode parent, int index);
 
         /// <summary>
         /// Creates a red node for the specified green node.
         /// </summary>
         /// <param name="greenNode">The green node.</param>
         /// <returns>The corresponding created red node.</returns>
-        Node Create(IGreenNode greenNode);
+        INode Create(IGreenNode greenNode);
     }
 }

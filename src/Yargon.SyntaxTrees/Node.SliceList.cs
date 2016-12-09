@@ -11,9 +11,9 @@ namespace Yargon.SyntaxTrees
         /// </summary>
         /// <typeparam name="T">The type to cast to.</typeparam>
         public sealed class SliceList<T> : IChildrenList<T>
-            where T : Node
+            where T : class, INode
         {
-            private readonly IChildrenList<Node> innerList;
+            private readonly IChildrenList<INode> innerList;
             private readonly int offset;
             private readonly int length;
 
@@ -41,7 +41,7 @@ namespace Yargon.SyntaxTrees
             /// <param name="innerList">The inner list.</param>
             /// <param name="offset">The zero-based offset of the slice.</param>
             /// <param name="length">The length of the slice.</param>
-            public SliceList(IChildrenList<Node> innerList, int offset, int length)
+            public SliceList(IChildrenList<INode> innerList, int offset, int length)
             {
                 #region Contract
                 if (innerList == null)
@@ -61,7 +61,7 @@ namespace Yargon.SyntaxTrees
             /// Initializes a new instance of the <see cref="SliceList{T}"/> class.
             /// </summary>
             /// <param name="innerList">The inner list.</param>
-            public SliceList(IChildrenList<Node> innerList)
+            public SliceList(IChildrenList<INode> innerList)
                 : this(innerList, 0, innerList?.Count ?? 0)
             {
                 // Nothing to do.
@@ -69,24 +69,15 @@ namespace Yargon.SyntaxTrees
             #endregion
 
             /// <inheritdoc />
-            public bool TryGet(int index, out T child)
+            public T TryGet(int index)
             {
                 #region Contract
                 if (index < 0 || index >= this.Count)
                     throw new ArgumentOutOfRangeException(nameof(index));
                 #endregion
 
-                Node innerChild;
-                if (!this.innerList.TryGet(this.offset + index, out innerChild))
-                {
-                    child = default(T);
-                    return false;
-                }
-                else
-                {
-                    child = (T)innerChild;
-                    return true;
-                }
+                var redNode = this.innerList.TryGet(this.offset + index);
+                return (T) redNode;
             }
 
             /// <inheritdoc />

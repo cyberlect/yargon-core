@@ -50,6 +50,7 @@
     <Compile Include="IGreenNode.cs" />
     <Compile Include="INodeFactory.cs" />
     <Compile Include="JetBrains.Annotations.cs" />
+    <Compile Include="INode.cs" />
     <Compile Include="Node.ChildrenList.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="FancyNodeFactory.cs" />
