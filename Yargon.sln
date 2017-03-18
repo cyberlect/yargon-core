@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yargon.Core", "src\Yargon.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yargon.SyntaxTrees", "src\Yargon.SyntaxTrees\Yargon.SyntaxTrees.csproj", "{BC91D05E-0C64-4009-A703-34E4EC2B80A3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yargon.Trees", "src\Yargon.Trees\Yargon.Trees.csproj", "{14B53171-F66C-49C8-9F3F-95D68B1147B5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{BC91D05E-0C64-4009-A703-34E4EC2B80A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC91D05E-0C64-4009-A703-34E4EC2B80A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC91D05E-0C64-4009-A703-34E4EC2B80A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14B53171-F66C-49C8-9F3F-95D68B1147B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14B53171-F66C-49C8-9F3F-95D68B1147B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14B53171-F66C-49C8-9F3F-95D68B1147B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14B53171-F66C-49C8-9F3F-95D68B1147B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
